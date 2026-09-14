@@ -53,7 +53,7 @@ STRIP_PATTERNS = [
     r"\bs\.a\.s\.\b", r"\bs\.a\.r\.l\.\b", r"\bs\.a\.\b",
     # Danish/Nordic legal forms
     r"\ba/s\b", r"\baps\b", r"\bi/s\b", r"\bp/s\b", r"\bk/s\b",
-    r"\bivs\b", r"\bamba\b", r"\ba\.m\.b\.a\.\b",
+    r"\bivs\b", r"\bamba\b", r"\ba\.m\.b\.a\.?\b",
     r"\(vg\)", r"\(.*?\)",  # (VG) and other parentheticals
     # Country/region qualifiers on subsidiary names ("X France SAS")
     r"\bfrance\b", r"\bdanmark\b", r"\bdenmark\b", r"\bscandinavia\b", r"\bnordic\b",
@@ -310,6 +310,11 @@ def search_company(data, query, city=None):
 
 def format_entry(entry, metadata):
     """Format a single company entry for display."""
+    # `metadata` and `entry["categories"]` may be an explicit null: --validate
+    # treats a null the same as an omitted key ("...must be an object when
+    # provided"), but dict.get(key, default) only substitutes the default for an
+    # absent key, so a null reached `.get()`/`[]` here and crashed the lookup.
+    metadata = metadata or {}
     lines = []
     lines.append(f"\n{'='*60}")
     lines.append(f"  {entry['company']}")
@@ -317,8 +322,8 @@ def format_entry(entry, metadata):
         lines.append(f"  Location: {entry['city']}")
     lines.append(f"{'='*60}")
 
-    # Get category data (everything except company/city fields)
-    categories = entry.get("categories", {})
+    # Get category data (everything except company/city fields).
+    categories = entry.get("categories") or {}
     if not categories:
         # Fallback: treat any numeric fields as categories
         skip_keys = {"company", "city", "categories"}
