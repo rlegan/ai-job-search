@@ -19,6 +19,18 @@ The four Danish demo portals (`jobindex`, `jobbank`, `jobnet`, `jobdanmark`) shi
 framework but are `enabled: false` here — `/scrape` skips them and reports them on its
 `skipped (disabled):` line. Re-enable one by flipping the flag in its `SKILL.md`.
 
+Additional French-market connectors (personal, occasional low-volume use;
+site terms restrict automated extraction):
+
+| Skill | State | Coverage and limits |
+|---|---|---|
+| `lesjeudis-search` | Enabled after live search/detail verification | Latest visible offers only; local accent-insensitive query; page 1 only, no reliable listing-date filter; `meta.complete: false`. |
+| `silkhom-search` | Enabled after live search/detail verification | Public archive with local query/age filters; page 1 only; recruiter is Silkhom, employer unknown unless explicitly identified; `meta.complete: false`. |
+| `apec-search` | Disabled | Offline parsers tested; ordinary CLI search returns HTTP 403 / `ACCESS_DENIED`; no bypass. |
+
+The CLIs use no paid service, login, browser impersonation, proxy, or application
+submission. Their availability does not authorize a scheduled search or a candidature.
+
 **Useful French flags** the two French CLIs share: `--contract cdi|cdd|stage|alternance|freelance`,
 `--remote full|partial|punctual|no`, `--location <city>`, `--region Ile-de-France`
 (unaccented, hyphenated), `--department Tech|Business|Sales|…`, `--language fr|en`.

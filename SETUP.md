@@ -26,7 +26,14 @@ On Windows, `py --version` is often the most reliable check. If your system expo
 
 ### Bun (for job search tools)
 
-The job portal CLIs (four Danish portals plus the country-agnostic `linkedin-search` and `freehire-search` tools) are written in TypeScript and run with Bun.
+The job portal CLIs (four Danish demos, country-agnostic `linkedin-search` and `freehire-search`, plus market-specific skills under `.agents/skills/`) are written in TypeScript and run with Bun.
+
+This French fork also installs `lesjeudis-search` and `silkhom-search`, enabled after
+bounded live search/detail verification. Both are personal-use-only and cover the
+observed public listings, not an exhaustive catalogue. `apec-search` is installed
+but disabled because ordinary direct CLI access is denied (HTTP 403). No paid
+fetching service, login or access-control bypass is configured. See each skill's
+`SKILL.md` and `cli/README.md` for supported flags and limitations.
 
 - macOS/Linux:
 

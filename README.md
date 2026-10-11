@@ -199,7 +199,10 @@ ai-job-search/
 │   ├── jobindex-search/               # Jobindex.dk (Denmark)
 │   ├── jobnet-search/                 # Jobnet.dk (Denmark, government portal)
 │   ├── linkedin-search/               # LinkedIn public job listings (country-agnostic)
-│   └── freehire-search/               # freehire.me tech job aggregator (multi-market, REST API)
+│   ├── freehire-search/               # freehire.me tech job aggregator (multi-market, REST API)
+│   ├── apec-search/                   # APEC France (disabled: ordinary CLI access denied)
+│   ├── lesjeudis-search/              # LesJeudis France (latest-offers subset; personal use)
+│   └── silkhom-search/                # Silkhom France (IT/freelance; personal use)
 ├── cv/
 │   └── main_example.tex               # moderncv LaTeX template
 ├── cover_letters/
